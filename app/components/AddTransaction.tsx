@@ -44,17 +44,17 @@ export default function AddTransaction() {
 
   const [text, setText] = useState<string>("");
   const [amount, setAmount] = useState<number | string>("");
-  // const [isFormIncomplete, setIsFormIncomplete] = useState<boolean>(false);
+  const [isFormIncomplete, setIsFormIncomplete] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const ALPHA_DASH_REGEX = /^[a-zA]+$/;
   const NUMERIC_DASH_REGEX = /^[Z0-9-]+$/;
 
   const onSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    // if (text.trim() === '' || amount === '') {
-    //   setIsFormIncomplete(true);
-    //   return;
-    // }
+    if (text.trim() === '' || amount === '') {
+      setIsFormIncomplete(true);
+      return;
+    }
  
     const newTransaction = {
       id: Math.floor(Math.random() * 10000000),
@@ -65,7 +65,7 @@ export default function AddTransaction() {
     dispatch(addExpense(newTransaction))
     setText("");
     setAmount("");
-    // setIsFormIncomplete(false);
+    setIsFormIncomplete(false);
 
   } 
  
@@ -79,7 +79,7 @@ export default function AddTransaction() {
       <form  typeof='submit' >
         <Box >
           <Typography variant='myVariant7'>Text</Typography>
-          <TextField placeholder='Enter Text..' typeof='text' color='secondary' required
+          <TextField placeholder='Enter Text..' typeof='text' color='secondary'
            onKeyDown={(event) => {
             if (event.key === 'Backspace') {
               return;
@@ -94,7 +94,7 @@ export default function AddTransaction() {
         <Box sx={{mt:'0.5rem'}} >
           <Typography variant='myVariant8' >Amount <br />
             (negative - expense, positive - income)</Typography>
-            <TextField placeholder='Enter Text..' typeof='text' color='secondary'required
+            <TextField placeholder='Enter Text..' typeof='text' color='secondary'
              onKeyDown={(event) => {
               if (event.key === 'Backspace') {
                 return;
@@ -105,7 +105,11 @@ export default function AddTransaction() {
             }}
               sx={{ bgcolor: '#fff', width: '100%' }} value={amount} 
               onChange={(e) => setAmount(e.target.value)}  onFocus={() => setAmount("") }  />
+              
         </Box>
+        {isFormIncomplete && (
+            <Typography color="error">Please fill all fields.</Typography>
+          )}
        <button color='secondary' className='btn' 
        onClick={onSubmit}>
         Add transaction
