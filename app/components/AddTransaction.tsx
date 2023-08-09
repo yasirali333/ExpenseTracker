@@ -72,17 +72,17 @@ export default function AddTransaction() {
               sx={{ bgcolor: '#fff', width: '100%' }} value={text} required
               onChange={(e) => setText(e.target.value)}   onFocus={() => setText("")} />
         </Box>
-        <Box >
-          <Typography variant='myVariant8' sx={{mt:'0.9rem'}}>Amount <br />
+        <Box sx={{mt:'0.5rem'}} >
+          <Typography variant='myVariant8' >Amount <br />
             (negative - expense, positive - income)</Typography>
             <TextField placeholder='Enter Text..' typeof='text' color='secondary'
               sx={{ bgcolor: '#fff', width: '100%' }} value={amount} required
               onChange={(e) => setAmount(e.target.value)}  onFocus={() => setAmount("")}  />
         </Box>
-       <Button color='secondary' className='btn' 
-       sx={{ '&:hover': { backgroundColor: '#9c88ff' },}} onClick={onSubmit}>
+       <button color='secondary' className='btn' 
+       onClick={onSubmit}>
         Add transaction
-       </Button>
+       </button>
        
       </form>
     </Box>
