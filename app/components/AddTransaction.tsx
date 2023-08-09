@@ -106,7 +106,7 @@ export default function AddTransaction() {
             }}
               sx={{ bgcolor: '#fff', width: '100%' }} value={amount} 
               onChange={(e) => setAmount(e.target.value)}  onFocus={() => setAmount("") }  />
-              {isFormIncomplete && (
+              {inValid && (
                 <Typography color="error">Please Enter Valid Amount</Typography>
               )}
         </Box>
