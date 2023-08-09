@@ -53,7 +53,7 @@ export default function AddTransaction() {
       setIsFormIncomplete(true);
       return;
     }
-    if ( amount === 0) {
+    if ( amount === '0') {
       setInValid(true);
       return;
     }
