@@ -53,7 +53,7 @@ export default function AddTransaction() {
       setIsFormIncomplete(true);
       return;
     }
-    if ( amount === '0') {
+    if (typeof amount === 'string' && amount.startsWith('0')) {
       setInValid(true);
       return;
     }
