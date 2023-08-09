@@ -46,8 +46,11 @@ export default function IncomExpences() {
       if (Math.abs(value) >= 1000000000 && Math.abs(value) < 1000000000000) {
         return (value / 1000000000).toFixed(2) + 'B';
       }
-      if (Math.abs(value) >= 1000000000000) {
+      if (Math.abs(value) >= 1000000000000 &&  Math.abs(value) < 1000000000000000000) {
         return (value / 1000000000000).toFixed(2) + 'T';
+      }
+      if (Math.abs(value) >= 1000000000000000000) {
+        return (value / 1000000000000000000).toFixed(2) + 'QT';
       }
     }
     return value.toString();
