@@ -41,15 +41,15 @@ export default function IncomExpences() {
   return (
     <ThemeProvider theme={theme}>
 
-      <Paper elevation={3} square sx={{ bgcolor:'#fff' ,p: '20px',width:'19rem',
+      <Paper elevation={3} square sx={{ bgcolor:'#fff' ,p: '20px',width:'87%',
       display: 'flex',justifyContent: 'space-between',margin: '20px 0px',flex:'1', textAlign:'center',}} >
 
-        <Paper elevation={0}  sx={{ width:'11rem', borderRight:'1px solid #dedede' ,}}>
+        <Paper elevation={0}  sx={{ width:'50%', borderRight:'1px solid #dedede' ,}}>
           <Typography variant="myVariant4">INCOME</Typography><br/>
        
           <Typography  variant="myVariant5" sx={{color:'#2ecc71'}} >+${income.toFixed(2)}</Typography>
         </Paper>
-        <Paper elevation={0}  sx={{width:'11rem'}}>
+        <Paper elevation={0}  sx={{width:'50%'}}>
           <Typography variant="myVariant4">EXPENSE</Typography><br/>
           <Typography  variant="myVariant5" sx={{color:'#c0392b'}}>-${Math.abs(expenses).toFixed(2)}</Typography>
         </Paper>
