@@ -45,6 +45,8 @@ export default function AddTransaction() {
   const [text, setText] = useState<string>("");
   const [amount, setAmount] = useState<number | string>("");
   const dispatch = useAppDispatch();
+  const ALPHA_DASH_REGEX = /^[a-zA]+$/;
+  const NUMERIC_DASH_REGEX = /^[Z0-9-]+$/;
 
   const onSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -56,6 +58,8 @@ export default function AddTransaction() {
     };
 
     dispatch(addExpense(newTransaction))
+    setText("");
+    setAmount("");
   } 
  
   return (
@@ -69,6 +73,14 @@ export default function AddTransaction() {
         <Box >
           <Typography variant='myVariant7'>Text</Typography>
           <TextField placeholder='Enter Text..' typeof='text' color='secondary'
+           onKeyDown={(event) => {
+            if (event.key === 'Backspace') {
+              return;
+            }
+            if (!ALPHA_DASH_REGEX.test(event.key)) {
+              event.preventDefault();
+            }
+          }}
               sx={{ bgcolor: '#fff', width: '100%' }} value={text} required
               onChange={(e) => setText(e.target.value)}   onFocus={() => setText("")} />
         </Box>
@@ -76,8 +88,19 @@ export default function AddTransaction() {
           <Typography variant='myVariant8' >Amount <br />
             (negative - expense, positive - income)</Typography>
             <TextField placeholder='Enter Text..' typeof='text' color='secondary'
+             onKeyDown={(event) => {
+             
+              if (event.key === 'Backspace') {
+                return;
+              }
+              
+             
+              if (!NUMERIC_DASH_REGEX.test(event.key)) {
+                event.preventDefault();
+              }
+            }}
               sx={{ bgcolor: '#fff', width: '100%' }} value={amount} required
-              onChange={(e) => setAmount(e.target.value)}  onFocus={() => setAmount("")}  />
+              onChange={(e) => setAmount(e.target.value)}  onFocus={() => setAmount("") }  />
         </Box>
        <button color='secondary' className='btn' 
        onClick={onSubmit}>
