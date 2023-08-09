@@ -79,7 +79,7 @@ export default function AddTransaction() {
       <form  typeof='submit' >
         <Box >
           <Typography variant='myVariant7'>Text</Typography>
-          <TextField placeholder='Enter Text..' typeof='text' color='secondary'
+          <TextField placeholder='Enter Text..' typeof='text' color='secondary' required
            onKeyDown={(event) => {
             if (event.key === 'Backspace') {
               return;
@@ -88,13 +88,13 @@ export default function AddTransaction() {
               event.preventDefault();
             }
           }}
-              sx={{ bgcolor: '#fff', width: '100%' }} value={text} required
+              sx={{ bgcolor: '#fff', width: '100%' }} value={text} 
               onChange={(e) => setText(e.target.value)}   onFocus={() => setText("")} />
         </Box>
         <Box sx={{mt:'0.5rem'}} >
           <Typography variant='myVariant8' >Amount <br />
             (negative - expense, positive - income)</Typography>
-            <TextField placeholder='Enter Text..' typeof='text' color='secondary'
+            <TextField placeholder='Enter Text..' typeof='text' color='secondary'required
              onKeyDown={(event) => {
               if (event.key === 'Backspace') {
                 return;
@@ -103,7 +103,7 @@ export default function AddTransaction() {
                 event.preventDefault();
               }
             }}
-              sx={{ bgcolor: '#fff', width: '100%' }} value={amount} required
+              sx={{ bgcolor: '#fff', width: '100%' }} value={amount} 
               onChange={(e) => setAmount(e.target.value)}  onFocus={() => setAmount("") }  />
         </Box>
        <button color='secondary' className='btn' 
