@@ -54,8 +54,8 @@ export default function TransactionList() {
             {Math.abs(item.amount) >= 1000000 ? (convertAmount(item.amount)) : `+$${item.amount.toFixed(2)}`}
             </span>
             <button
-              onClick={() => dispatch(deleteExpense(item.id))}
-              className="delete-btn"
+              onFocus={() => dispatch(deleteExpense(item.id))}
+              className='delete-btn'
             >
               x
             </button>

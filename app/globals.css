@@ -122,14 +122,14 @@ input[type='number'] {
   opacity: 1;
 }
 
-.transaction-list {
+/* .transaction-list {
   max-height: 8rem;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #aaa #ddd;
-}
+} */
 
-
+/* 
 .transaction-list::-webkit-scrollbar {
   width: 8px; 
 }
@@ -143,4 +143,4 @@ input[type='number'] {
 
 .transaction-list::-webkit-scrollbar-track {
   background: #ddd;
-}
+} */
