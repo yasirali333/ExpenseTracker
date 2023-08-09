@@ -18,6 +18,24 @@ const theme = createTheme({
   
   },
 });
+const convertAmount = (value: string | number): string => {
+  if (typeof value === 'number') {
+    if (Math.abs(value) >= 1000000 && Math.abs(value) < 1000000000) {
+      return (value / 1000000).toFixed(2) + 'M';
+    }
+    if (Math.abs(value) >= 1000000000 && Math.abs(value) < 1000000000000) {
+      return (value / 1000000000).toFixed(2) + 'B';
+    }
+    if (Math.abs(value) >= 1000000000000 &&  Math.abs(value) < 1000000000000000000) {
+      return (value / 1000000000000).toFixed(2) + 'T';
+    }
+    if (Math.abs(value) >= 1000000000000000000) {
+      return (value / 1000000000000000000).toFixed(2) + 'QT';
+    }
+  }
+  return value.toString();
+};
+
 
 export default function TransactionList() {
   const expense = useAppSelector((state) => state.expenses.Transaction);
@@ -31,7 +49,10 @@ export default function TransactionList() {
         {expense.map((item: any) => (
           <li key={item.id} className={item.amount < 0 ? "minus" : "plus"}>
             {item.text}
-            <span>${Math.abs(item.amount)}</span>
+            <span>
+             
+            {Math.abs(item.amount) >= 1000000 ? (convertAmount(item.amount)) : `+$${item.amount.toFixed(2)}`}
+            </span>
             <button
               onClick={() => dispatch(deleteExpense(item.id))}
               className="delete-btn"
