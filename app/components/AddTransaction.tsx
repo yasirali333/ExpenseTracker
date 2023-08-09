@@ -34,10 +34,7 @@ const theme = createTheme({
       fontStyle: "normal",
       fontWeight: "500",
  
-    },
-
-  
-   
+    },   
   },
 });
 export default function AddTransaction() {
@@ -45,6 +42,7 @@ export default function AddTransaction() {
   const [text, setText] = useState<string>("");
   const [amount, setAmount] = useState<number | string>("");
   const [isFormIncomplete, setIsFormIncomplete] = useState<boolean>(false);
+  const [inValid, setInValid] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const ALPHA_DASH_REGEX = /^[a-zA]+$/;
   const NUMERIC_DASH_REGEX = /^[Z0-9-]+$/;
@@ -55,7 +53,10 @@ export default function AddTransaction() {
       setIsFormIncomplete(true);
       return;
     }
- 
+    if ( amount === 0) {
+      setInValid(true);
+      return;
+    }
     const newTransaction = {
       id: Math.floor(Math.random() * 10000000),
       text,
@@ -66,7 +67,7 @@ export default function AddTransaction() {
     setText("");
     setAmount("");
     setIsFormIncomplete(false);
-
+    setInValid(false);
   } 
  
   return (
@@ -91,7 +92,7 @@ export default function AddTransaction() {
               sx={{ bgcolor: '#fff', width: '100%' }} value={text} 
               onChange={(e) => setText(e.target.value)}   onFocus={() => setText("")} />
         </Box>
-        <Box sx={{mt:'0.5rem'}} >
+        <Box sx={{mt:'0.5rem',mb:'0.5rem'}} >
           <Typography variant='myVariant8' >Amount <br />
             (negative - expense, positive - income)</Typography>
             <TextField placeholder='Enter Text..' typeof='text' color='secondary'
@@ -105,7 +106,9 @@ export default function AddTransaction() {
             }}
               sx={{ bgcolor: '#fff', width: '100%' }} value={amount} 
               onChange={(e) => setAmount(e.target.value)}  onFocus={() => setAmount("") }  />
-              
+              {isFormIncomplete && (
+                <Typography color="error">Please Enter Valid Amount</Typography>
+              )}
         </Box>
         {isFormIncomplete && (
             <Typography color="error">Please fill all fields.</Typography>
