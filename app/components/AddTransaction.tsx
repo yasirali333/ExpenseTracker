@@ -44,17 +44,17 @@ export default function AddTransaction() {
 
   const [text, setText] = useState<string>("");
   const [amount, setAmount] = useState<number | string>("");
-  const [isFormIncomplete, setIsFormIncomplete] = useState<boolean>(false);
+  // const [isFormIncomplete, setIsFormIncomplete] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const ALPHA_DASH_REGEX = /^[a-zA]+$/;
   const NUMERIC_DASH_REGEX = /^[Z0-9-]+$/;
 
   const onSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (text.trim() === '' || amount === '') {
-      setIsFormIncomplete(true);
-      return;
-    }
+    // if (text.trim() === '' || amount === '') {
+    //   setIsFormIncomplete(true);
+    //   return;
+    // }
  
     const newTransaction = {
       id: Math.floor(Math.random() * 10000000),
@@ -65,7 +65,7 @@ export default function AddTransaction() {
     dispatch(addExpense(newTransaction))
     setText("");
     setAmount("");
-    setIsFormIncomplete(false);
+    // setIsFormIncomplete(false);
 
   } 
  
