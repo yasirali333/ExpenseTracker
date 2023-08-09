@@ -42,7 +42,7 @@ export default function TransactionList() {
   const dispatch = useAppDispatch();
   return (
     <ThemeProvider theme={theme}>
-    <Box>
+    <Box className='transaction-list'>
           <Typography variant="myVariant6">History</Typography>
    
        <ul className="list">
