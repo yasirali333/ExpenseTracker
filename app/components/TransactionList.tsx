@@ -42,9 +42,9 @@ export default function TransactionList() {
   const dispatch = useAppDispatch();
   return (
     <ThemeProvider theme={theme}>
+      <Typography variant="myVariant6">History</Typography>
     <Box className='transaction-list'>
-          <Typography variant="myVariant6">History</Typography>
-   
+      
        <ul className="list">
         {expense.map((item: any) => (
           <li key={item.id} className={item.amount < 0 ? "minus" : "plus"}>

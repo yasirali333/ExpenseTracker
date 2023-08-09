@@ -123,24 +123,24 @@ input[type='number'] {
 }
 
 .transaction-list {
-  max-height: 12rem;
+  max-height: 8rem;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #aaa #ddd;
 }
 
-/* Define the scrollbar style */
+
 .transaction-list::-webkit-scrollbar {
-  width: 8px; /* width of the scrollbar */
+  width: 8px; 
 }
 
-/* Handle */
+
 .transaction-list::-webkit-scrollbar-thumb {
-  background-color: #aaa; /* color of the thumb */
+  background-color: #aaa;
   border-radius: 4px;
 }
 
-/* Track */
+
 .transaction-list::-webkit-scrollbar-track {
-  background: #ddd; /* color of the track */
+  background: #ddd;
 }
