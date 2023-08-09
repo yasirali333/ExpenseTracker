@@ -13,7 +13,7 @@ export type TransactionTypes = {
 };
 
 const initailState: InitialStateTypes = {
-  Transaction: [{ id: 1, text: "Books", amount: 200 }],
+  Transaction: [],
 };
 
 const expenseSlice = createSlice({

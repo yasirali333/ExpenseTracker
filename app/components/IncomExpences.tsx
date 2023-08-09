@@ -38,6 +38,21 @@ export default function IncomExpences() {
   const income = amounts.filter((amount) => amount > 0).reduce((acc, item) => acc + item, 0);
   const expenses = amounts.filter((amount) => amount < 0).reduce((acc, item) => acc + item, 0);
 
+  const convertAmount= (value: string | number): string => {
+    if (typeof value === 'number') {
+      if (Math.abs(value) >= 1000000 && Math.abs(value) < 1000000000) {
+        return (value / 1000000).toFixed(2) + 'M';
+      }
+      if (Math.abs(value) >= 1000000000 && Math.abs(value) < 1000000000000) {
+        return (value / 1000000000).toFixed(2) + 'B';
+      }
+      if (Math.abs(value) >= 1000000000000) {
+        return (value / 1000000000000).toFixed(2) + 'T';
+      }
+    }
+    return value.toString();
+  };
+
   return (
     <ThemeProvider theme={theme}>
 
@@ -47,11 +62,15 @@ export default function IncomExpences() {
         <Paper elevation={0}  sx={{ width:'50%', borderRight:'1px solid #dedede' ,}}>
           <Typography variant="myVariant4">INCOME</Typography><br/>
        
-          <Typography  variant="myVariant5" sx={{color:'#2ecc71'}} >+${income.toFixed(2)}</Typography>
+          <Typography variant="myVariant5" sx={{ color: '#2ecc71' }}>
+          {Math.abs(income) >= 1000000 ? (convertAmount(income)) : `+$${income.toFixed(2)}`}
+        </Typography>
         </Paper>
         <Paper elevation={0}  sx={{width:'50%'}}>
           <Typography variant="myVariant4">EXPENSE</Typography><br/>
-          <Typography  variant="myVariant5" sx={{color:'#c0392b'}}>-${Math.abs(expenses).toFixed(2)}</Typography>
+          <Typography  variant="myVariant5" sx={{color:'#c0392b'}}>
+          {Math.abs(income) >= 1000000 ? (convertAmount(income)) : `-$${income.toFixed(2)}`}
+            </Typography>
         </Paper>
       </Paper>
 

@@ -40,6 +40,21 @@ const theme = createTheme({
    
   },
 });
+const convertAmount = (value: string | number): string => {
+  if (typeof value === 'number') {
+    if (Math.abs(value) >= 1000000 && Math.abs(value) < 1000000000) {
+      return (value / 1000000).toFixed(2) + 'M';
+    }
+    if (Math.abs(value) >= 1000000000 && Math.abs(value) < 1000000000000) {
+      return (value / 1000000000).toFixed(2) + 'B';
+    }
+    if (Math.abs(value) >= 1000000000000) {
+      return (value / 1000000000000).toFixed(2) + 'T';
+    }
+  }
+  return value.toString();
+};
+
 
 
 export default function Balance() {
@@ -56,7 +71,7 @@ export default function Balance() {
      </Typography>
      <Box  sx={{mt:'10px'}}>
      <Typography variant="myVariant3">
-        ${totalAmount}
+        {Math.abs(totalAmount) >= 1000000 ? (convertAmount(totalAmount)) : `$${totalAmount.toFixed(2)}`}
      </Typography>
      </Box>
 
